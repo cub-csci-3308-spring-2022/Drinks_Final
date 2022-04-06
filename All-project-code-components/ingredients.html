@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <title>Cocktail Ingredients</title>
+    <link rel="icon" href="../resources/img/favicon.ico" class ="all_checkboxes" type="image/x-icon" />
+    <!-- Bootstrap core CSS-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <!--CSS stylesheet for this page-->
+    <link rel="stylesheet" href="ing_style.css">
+  </head>
+  <body>
+    <!--NAV BAR CODE-->
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <ul class = "navbar-nav">
+              <li class="nav-item ">
+                  <a class = "nav-link" href="home.html">Home</a></li>
+              <li class="nav-item">
+                  <a class="nav-link active" href="ingredients.html">Cocktails</a></li>
+              <li class="nav-item">
+                  <a class="nav-link" href="Favorite.html">Favorites</a></li>
+          </ul>
+          <span class="navbar-text" style="font-family:'Apple Chancery'; font-size:40px; margin-left:auto; margin-right:auto">
+            Cocktail Mixer
+        </span>
+          <button class="btn btn-outline-success" type="button">Sign Out
+                  <a class="nav-link" href="login.html"></a>
+          </button>
+      </nav>
+    </div>
+    <!--list of ingredients to check off-->
+        <div class = "container-fluid">
+            <form>
+                <Label> Ingredients</Label><br>
+                <div>
+                    <!--Search box-->
+                    <input class = "search_box" type="text" placeholder="Search ingredients"><br>
+                    <!--Checkboxes-->
+                    <input class ="all_checkboxes" type="checkbox" name="lime_choice" value="Lime">Lime<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Lemon_choice" value="lemon">Lemon<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Olives_choice" value="olives">Olives<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Mint_choice" value="mint">Mint<br>
+                    <input class ="all_checkboxes" type="checkbox" name="grenadine_choice" value="grenadine">Grenadine<br>
+                    <input class ="all_checkboxes" type="checkbox" name="cinnamon_choice" value="cinnamon">Cinnamon<br>
+                    <input class ="all_checkboxes" type="checkbox" name="OJ_choice" value="rum">Orange Juice<br>
+                    <input class ="all_checkboxes" type="checkbox" name="club_soda_choice" value="club_soda">Club Soda<br>
+                    <input class ="all_checkboxes" type="checkbox" name="ginger_beer_choice" value="ginger_beer">Ginger Beer<br>
+                    <input class ="all_checkboxes" type="checkbox" name="coke_choice" value="coke">Coke<br>
+                    <input class ="all_checkboxes" type="checkbox" name="tequilla_choice" value="tequilla">Tequilla<br>
+                    <input class ="all_checkboxes" type="checkbox" name="vodka_choice" value="vodka">Vodka<br>
+                    <input class ="all_checkboxes" type="checkbox" name="whiskey_choice" value="whiskey">Whiskey<br>
+                    <input class ="all_checkboxes" type="checkbox" name="rum_choice" value="rum">Rum<br>
+                    <input class ="all_checkboxes" type="checkbox" name="gin_choice" value="gin">Gin<br>
+                    <!--submit button-->
+                    <input type="submit" value="search" class="submit-btn">
+                </dev>
+            </form>
+
+
+        </div>
+    </body>
+</html>
