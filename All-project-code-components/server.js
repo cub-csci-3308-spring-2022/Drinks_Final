@@ -136,5 +136,86 @@ app.post('/users/ingredients/search', function(req,res){
 
 });
 
+
+//API CALLING CODE
+
+// var url = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=';
+// var selected_ing = "Dry_Vermouth,Gin";
+// var drink_names = [];
+// var ingredients = [];
+// var measurement = [];
+// urlTwo = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+
+// function getDrinkIngredients(drink_name){
+// 	fetch(urlTwo + drink_name)
+// 	.then(
+// 		function(response) {
+// 			if (response.status !== 200){
+// 			console.log('there was a problem fetching the API');
+// 			return;
+// 			}
+		
+
+// 			response.json().then(function(data)
+// 			{
+// 				console.log(data);
+// 				  console.log(data.drinks[0]["strDrink"]);
+
+// 				for(var i = 1; i < 10; i++)
+//                 {
+//                     var ing = "strIngredient" +i;
+// 					var mes = "strMeasure" +i;
+// 					if(data.drinks[0][ing] == null)
+// 					{
+// 						return;
+// 					}
+// 					ingredients[i - 1] = data.drinks[0][ing];
+// 					measurement[i-1] = data.drinks[0][mes];
+// 					console.log(measurement[i-1], ingredients[i-1]);
+//                 }
+//             }
+
+
+// 			)
+// 		}
+// 	)
+// 	.catch(function(err) {
+// 		console.log('Fetch Error:-S', err);
+// 	});
+// }
+
+
+// function getDrinkNames(selected_ing){
+// 	fetch(url + selected_ing)
+// 	.then(
+// 		function(response) {
+// 			if (response.status !== 200){
+// 			console.log('there was a problem fetching the API');
+// 			return;
+// 			}
+		
+
+// 			response.json().then(function(data)
+// 			{
+// 				console.log(data); 
+//                 for(var i = 0; i < data.drinks.length; i++)
+//                 {
+//                     drink_names[i] = data.drinks[i].strDrink;
+//                 }    
+				
+// 				for(var j = 0; j < drink_names.length; j++)
+// 				{
+// 					getDrinkIngredients(drink_names[j]);
+// 				}
+//             })
+// 		}
+// 	)
+// 	.catch(function(err) {
+// 		console.log('Fetch Error:-S', err);
+// 	});
+	
+// }
+// getDrinkNames();
+
 app.listen(3000);
 console.log('3000 is the magic port');
