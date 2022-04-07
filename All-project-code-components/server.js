@@ -41,16 +41,13 @@ app.get("/users/favorite", (req, res) => {
   res.render("favorite"); 
 });
 
-app.get("/users/ingredients", (req, res) => {  
-  res.render("ingredients");
-});
 
 app.get("/users/logout", (req, res) => {
   req.logout();
   res.render("home", { message: "You have logged out successfully" });
 });
 
-app.post("/users/signup", async (req, res) => {
+app.post("/users/signup", function (req, res) {
   var fname = req.body.fname;
 	var lname = req.body.lname;
 	var username = req.body.username;
@@ -107,9 +104,9 @@ app.post("/users/signup", async (req, res) => {
         //} else {
           db.any(insert_statement)
 
-        .then(res => {
+        .then(results => {
           //console.log(res.rows);
-          res.redirect('pages/login');
+          return res.redirect('pages/login');
         })
         .catch(err => {
                 console.log('error', err);
@@ -118,6 +115,25 @@ app.post("/users/signup", async (req, res) => {
      // }
     //);
   }
+});
+//ui
+// emily 
+app.get('/users/ingredients', (req,res)=>{
+	res.render('ingredients');
+});
+
+
+
+//api
+app.post('/users/ingredients/search', function(req,res){
+	const selected_ingredients = []
+	const input_ingredients = req.body;
+	for (var ingredient in input_ingredients){
+		selected_ingredients.push(input_ingredients[ingredient]);
+	}
+	console.log(selected_ingredients);
+	//search db call
+
 });
 
 app.listen(3000);

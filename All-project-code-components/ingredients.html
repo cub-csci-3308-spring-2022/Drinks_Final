@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     />
     <!--CSS stylesheet for this page-->
-    <link rel="stylesheet" href="ing_style.css">
+    <link rel="stylesheet" href="../ing_style.css">
   </head>
   <body>
     <!--NAV BAR CODE-->
@@ -41,16 +41,16 @@
     </div>
     <!--list of ingredients to check off-->
         <div class = "container-fluid">
-            <form>
+            <form action="/ingredients/search" method="post">
+              
                 <Label> Ingredients</Label><br>
                 <div>
-                    <!--Search box-->
-                    <input class = "search_box" type="text" placeholder="Search ingredients"><br>
+                   
                     <!--Checkboxes-->
-                    <input class ="all_checkboxes" type="checkbox" name="lime_choice" value="Lime">Lime<br>
-                    <input class ="all_checkboxes" type="checkbox" name="Lemon_choice" value="lemon">Lemon<br>
-                    <input class ="all_checkboxes" type="checkbox" name="Olives_choice" value="olives">Olives<br>
-                    <input class ="all_checkboxes" type="checkbox" name="Mint_choice" value="mint">Mint<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Sugar_syrup_choice" value="Sugar syrup">Sugar syrup<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Lime_juice_choice" value="Lime juice">Lime juice<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Lime_juice_choice" value="Lime juice">Lemon juice<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Cherry_brandy_liqueur_choice" value="Cherry brandy liqueur">Cherry brandy liqueur<br>
                     <input class ="all_checkboxes" type="checkbox" name="grenadine_choice" value="grenadine">Grenadine<br>
                     <input class ="all_checkboxes" type="checkbox" name="cinnamon_choice" value="cinnamon">Cinnamon<br>
                     <input class ="all_checkboxes" type="checkbox" name="OJ_choice" value="rum">Orange Juice<br>
@@ -62,12 +62,40 @@
                     <input class ="all_checkboxes" type="checkbox" name="whiskey_choice" value="whiskey">Whiskey<br>
                     <input class ="all_checkboxes" type="checkbox" name="rum_choice" value="rum">Rum<br>
                     <input class ="all_checkboxes" type="checkbox" name="gin_choice" value="gin">Gin<br>
-                    <!--submit button-->
-                    <input type="submit" value="search" class="submit-btn">
-                </dev>
+                    <input class ="all_checkboxes" type="checkbox" name="Runny_Honey_choice" value="Runny_Honey">Runny Honey<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Citrus_Flavoured_vodka_choice" value="Citrus Flavoured vodka">Citrus Flavoured vodka<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Irish_cream_liqueur_choice" value="Irish cream liqueur">Irish cream liqueur<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Raspberrries_choice" value="Raspberrries">Raspberrries<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Melon_liqueur_choice" value="Melon liqueur">Melon liqueur<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Peach_Schnapp_liqueur_choice" value="Peach Schnapps liqueur">Peach Schnapps liqueur<br>
+                    <input class ="all_checkboxes" type="checkbox" name="White_wine_choice" value="White wine">White wine<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Pomegranate_choice" value="Pomegranate">Pomegranate<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Apple_choice" value="Apple">Apple<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Cranberry_juice_choice" value="Cranberry juice">Cranberry juice<br>
+                    <input class ="all_checkboxes" type="checkbox" name="cream_choice" value="Cream">Cream<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Grapefruit_choice" value="Grapefruit">Grapefruit<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Wine_choice" value="Wine">Wine<br>
+                    <input class ="all_checkboxes" type="checkbox" name="pisco_choice" value="Pisco">Pisco<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Coconut_rum_liqueur_choice" value="Coconut rum liqueur">Coconut rum liqueur<br>
+                
+                    <input class ="all_checkboxes" type="checkbox" name="sake_choice" value="Sake">Sake<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Strawberries_choice" value="Strawberries juice">Strawberries<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Cognac_choice" value="Cognac">Cognac<br>
+                    <input class ="all_checkboxes" type="checkbox" name="Pineapple_choice" value="Pineapple">Pineapple<br>
+                    <input class ="all_checkboxes" type="checkbox" name="mango_choice" value="mango">Mango<br>
+                    
+<!--submit button v 2-->
+<input type="search" id="mySearch" name="q">
+<button>Search</button>
+<!--submit button-->
+<input type="submit" value="search" class="submit-btn">
+                    
+                </div>
             </form>
+
+            
 
 
         </div>
+        
     </body>
-</html>
