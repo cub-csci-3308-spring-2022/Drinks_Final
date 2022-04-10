@@ -47,6 +47,7 @@ app.get("/users/logout", (req, res) => {
   res.render("home", { message: "You have logged out successfully" });
 });
 
+// Jairo - signup
 app.post("/users/signup", function (req, res) {
   var fname = req.body.fname;
 	var lname = req.body.lname;
@@ -54,9 +55,8 @@ app.post("/users/signup", function (req, res) {
   var birthyear = req.body.birthyear
   var password = req.body.password
   var password2 = req.body.password2
-  var insert_statement = "INSERT INTO users(firstName, lastName, DOB, username, password) VALUES('" + fname + "','" + lname + "','" + birthyear +"','" + username +"','" + password +"');"; // Write a SQL statement to insert
-	//var insert_statement2 = "SELECT * FROM users WHERE username = $1`,"
-
+  var insert_statement = "INSERT INTO users(firstName, lastName, DOB, username, password) VALUES('" + fname + "','" + lname + "','" + birthyear +"','" + username +"','" + password +"');";
+  
   let errors = [];
 
   console.log({
@@ -73,49 +73,26 @@ app.post("/users/signup", function (req, res) {
   }
 
   if (errors.length > 0) {
-    res.render("signup", { errors, fname, lname, username, birthyear, password, password2 });
-  } else 
+    res.render("signup", { errors, fname, lname, username});
+  } 
   
+  else 
   {
-    //db.task(
-      //[username],
-      (err, results) => {
-        //if (err) {
-          //console.log(err);
-        //}
-        //console.log(results.rows);
-
-        //db.task('get-everything', task => {
-          //return task.batch([
-            //  task.any(insert_statement2)
-          //]);
-      //})
-      //.then(results => {
-        //console.log(results.rows);
-      //})
-      //.catch(err => {
-        //      console.log('error', err);
-      //});
-
-        //if (results.rows.length > 0) {
-          //return res.render("signup", {
-            //message: "Username already registered"
-          //});
-        //} else {
-          db.any(insert_statement)
-
-        .then(results => {
-          //console.log(res.rows);
-          return res.redirect('pages/login');
-        })
-        .catch(err => {
-                console.log('error', err);
-        });
-        }
-     // }
-    //);
+    db.task('get-everything', task => {
+          return task.batch([
+              task.any(insert_statement)
+          ]);
+      })
+      .then(info => {
+        res.render("home.ejs")
+      })
+      .catch(err => {
+              console.log('error', err);
+              res.render('/users/signup.ejs')
+      });
   }
 });
+
 //ui
 // emily 
 app.get('/users/ingredients', (req,res)=>{
