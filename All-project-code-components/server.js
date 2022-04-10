@@ -1,6 +1,6 @@
 const express = require("express"); // so we can use the express library
 const app = express(); // so we can access the express library
-
+const fetch = require('node-fetch');
 
 var bodyParser = require('body-parser'); //Ensure our body-parser tool has been added
 app.use(bodyParser.json());              // support json encoded bodies
@@ -18,7 +18,7 @@ const dbConfig = {
 };
 
 var db = pgp(dbConfig);
-
+var selected_ingredients = [];
 
 
 app.use(express.static(__dirname + '/'));//This line is necessary for us to use relative paths and access our resources directory
@@ -126,96 +126,102 @@ app.get('/users/ingredients', (req,res)=>{
 
 //api
 app.post('/users/ingredients/search', function(req,res){
-	const selected_ingredients = []
+  selected_ingredients = []
 	const input_ingredients = req.body;
 	for (var ingredient in input_ingredients){
 		selected_ingredients.push(input_ingredients[ingredient]);
 	}
-	console.log(selected_ingredients);
+  console.log(selected_ingredients);
+  
+  
 	//search db call
+  getDrinkNames(selected_ingredients)
 
 });
 
 
 //API CALLING CODE
 
-// var url = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=';
-// var selected_ing = "Dry_Vermouth,Gin";
-// var drink_names = [];
-// var ingredients = [];
-// var measurement = [];
-// urlTwo = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+var url = 'https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=';
+var selected_ing = "Dry_Vermouth,Gin";
+var drink_names = [];
+var ingredients = [];
+var measurement = [];
+urlTwo = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
-// function getDrinkIngredients(drink_name){
-// 	fetch(urlTwo + drink_name)
-// 	.then(
-// 		function(response) {
-// 			if (response.status !== 200){
-// 			console.log('there was a problem fetching the API');
-// 			return;
-// 			}
+
+function getDrinkIngredients(drink_name){
+	fetch(urlTwo + drink_name)
+	.then(
+		function(response) {
+			if (response.status !== 200){
+			console.log('there was a problem fetching the API');
+			return;
+			}
 		
 
-// 			response.json().then(function(data)
-// 			{
-// 				console.log(data);
-// 				  console.log(data.drinks[0]["strDrink"]);
+			response.json().then(function(data)
+			{
+				console.log(data);
+				  console.log(data.drinks[0]["strDrink"]);
 
-// 				for(var i = 1; i < 10; i++)
-//                 {
-//                     var ing = "strIngredient" +i;
-// 					var mes = "strMeasure" +i;
-// 					if(data.drinks[0][ing] == null)
-// 					{
-// 						return;
-// 					}
-// 					ingredients[i - 1] = data.drinks[0][ing];
-// 					measurement[i-1] = data.drinks[0][mes];
-// 					console.log(measurement[i-1], ingredients[i-1]);
-//                 }
-//             }
-
-
-// 			)
-// 		}
-// 	)
-// 	.catch(function(err) {
-// 		console.log('Fetch Error:-S', err);
-// 	});
-// }
+				for(var i = 1; i < 10; i++)
+                {
+                    var ing = "strIngredient" +i;
+					var mes = "strMeasure" +i;
+					if(data.drinks[0][ing] == null)
+					{
+						return;
+					}
+					ingredients[i - 1] = data.drinks[0][ing];
+					measurement[i-1] = data.drinks[0][mes];
+					console.log(measurement[i-1], ingredients[i-1]);
+                }
+            }
 
 
-// function getDrinkNames(selected_ing){
-// 	fetch(url + selected_ing)
-// 	.then(
-// 		function(response) {
-// 			if (response.status !== 200){
-// 			console.log('there was a problem fetching the API');
-// 			return;
-// 			}
+			)
+		}
+	)
+	.catch(function(err) {
+		console.log('Fetch Error:-S', err);
+	});
+}
+
+
+function getDrinkNames(selected_ingredients){
+	fetch(url + selected_ingredients)
+	.then(
+		function(response) {
+			if (response.status !== 200){
+			console.log('there was a problem fetching the API');
+			return;
+			}
 		
 
-// 			response.json().then(function(data)
-// 			{
-// 				console.log(data); 
-//                 for(var i = 0; i < data.drinks.length; i++)
-//                 {
-//                     drink_names[i] = data.drinks[i].strDrink;
-//                 }    
+			response.json().then(function(data)
+			{
+				console.log(data); 
+                for(var i = 0; i < data.drinks.length; i++)
+                {
+                    drink_names[i] = data.drinks[i].strDrink;
+                }    
 				
-// 				for(var j = 0; j < drink_names.length; j++)
-// 				{
-// 					getDrinkIngredients(drink_names[j]);
-// 				}
-//             })
-// 		}
-// 	)
-// 	.catch(function(err) {
-// 		console.log('Fetch Error:-S', err);
-// 	});
+				for(var j = 0; j < drink_names.length; j++)
+				{
+					getDrinkIngredients(drink_names[j]);
+				}
+            })
+		}
+	)
+	.catch(function(err) {
+		console.log('Fetch Error:-S', err);
+	});
 	
-// }
+}
 // getDrinkNames();
+
+
 
 app.listen(3000);
 console.log('3000 is the magic port');
