@@ -112,6 +112,11 @@ function signUpModalFn() {
   };
 }
 
+function loginModalFn() {
+  var username = document.getElementById('username');
+  var password = document.getElementById('psw');
+}
+
 function enableButton(year, letter, capital, number, length, match) {
 
   var result = false;

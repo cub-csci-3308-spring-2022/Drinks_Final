@@ -29,16 +29,16 @@ app.get("/", (req, res) => {
   res.render("home"); // to view the homepage inex is the name
 });
 
-app.get("/users/signup", (req, res) => { 
+app.get("/users/signup", (req, res) => {
   res.render("signup.ejs");
 });
 
-app.get("/users/login", (req, res) => { 
+app.get("/users/login", (req, res) => {
   res.render("login.ejs"); // to view the login page
 });
 
-app.get("/users/favorite", (req, res) => { 
-  res.render("favorite"); 
+app.get("/users/favorite", (req, res) => {
+  res.render("favorite");
 });
 
 
@@ -56,7 +56,7 @@ app.post("/users/signup", function (req, res) {
   var password = req.body.password
   var password2 = req.body.password2
   var insert_statement = "INSERT INTO users(firstName, lastName, DOB, username, password) VALUES('" + fname + "','" + lname + "','" + birthyear +"','" + username +"','" + password +"');";
-  
+
   let errors = [];
 
   console.log({
@@ -74,9 +74,9 @@ app.post("/users/signup", function (req, res) {
 
   if (errors.length > 0) {
     res.render("signup", { errors, fname, lname, username});
-  } 
-  
-  else 
+  }
+
+  else
   {
     db.task('get-everything', task => {
           return task.batch([
@@ -93,8 +93,44 @@ app.post("/users/signup", function (req, res) {
   }
 });
 
+// Duncan - Login
+app.post("/users/login.ejs", function(req, res) {
+  var username = req.body.username;
+	var password = req.body.password;
+	//var query = 'select username, password from users;';
+	var query = "select username, password from users where username = '" + username + "';";
+	db.any(query)
+        .then(function (rows) {
+					console.log(rows);
+					// if(rows.length == 0){
+					// 	console.log('error', err);
+					// 	return
+					// }
+      		if(rows[0].password == password){
+						return res.render("home");
+					}
+					else{
+						console.log({
+					    username,
+					   	password
+					  });
+					}
+			})
+        .catch(function (err) {
+            console.log('error', err);
+            res.render('login.ejs', {
+
+        })
+			})
+});
+
+// Dummy Load Database
+// INSERT INTO users(firstName, lastName, DOB, username, password) VALUES('Duncan','Miller','20000212','duncanmiller','DuncanMiller1!');
+
+
+
 //ui
-// emily 
+// emily
 app.get('/users/ingredients', (req,res)=>{
 	res.render('ingredients');
 });
@@ -109,8 +145,8 @@ app.post('/users/ingredients/search', function(req,res){
 		selected_ingredients.push(input_ingredients[ingredient]);
 	}
   console.log(selected_ingredients);
-  
-  
+
+
 	//search db call
   getDrinkNames(selected_ingredients)
 
@@ -135,7 +171,7 @@ function getDrinkIngredients(drink_name){
 			console.log('there was a problem fetching the API');
 			return;
 			}
-		
+
 
 			response.json().then(function(data)
 			{
@@ -174,16 +210,16 @@ function getDrinkNames(selected_ingredients){
 			console.log('there was a problem fetching the API');
 			return;
 			}
-		
+
 
 			response.json().then(function(data)
 			{
-				console.log(data); 
+				console.log(data);
                 for(var i = 0; i < data.drinks.length; i++)
                 {
                     drink_names[i] = data.drinks[i].strDrink;
-                }    
-				
+                }
+
 				for(var j = 0; j < drink_names.length; j++)
 				{
 					getDrinkIngredients(drink_names[j]);
@@ -194,7 +230,7 @@ function getDrinkNames(selected_ingredients){
 	.catch(function(err) {
 		console.log('Fetch Error:-S', err);
 	});
-	
+
 }
 // getDrinkNames();
 
