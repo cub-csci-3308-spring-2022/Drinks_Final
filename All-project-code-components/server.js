@@ -274,6 +274,19 @@ app.get('/favorites/favorite.ejs', function(req, res) {
         })
 });
 
+app.post('/user/favortie.ejs', function(req, res){
+var query= 'INSERT STATEMENT  ';
+  var data = $("#myContent").html();
+  var url = "--your url here--";
+  $.post(url,
+    {
+      html: data
+    },
+    function(data, status){
+      alert("Data: " + data + "\nStatus: " + status);
+  });
+});
+
 
 app.listen(3000);
 console.log('3000 is the magic port');
