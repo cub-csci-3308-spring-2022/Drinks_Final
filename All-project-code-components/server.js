@@ -250,6 +250,29 @@ async function getDrinkNames(selected_ingredients){
   return drinks;
 }
 
+// Favorites Page Requests (Cooper/Behta)
+app.get('/favorites/favorite.ejs', function(req, res) {
+	// Query to inner join (get) drinks from favorites table while matching userID 
+	var query = 'SELECT drinkID,drinkName from favorites INNER JOIN users ON favorite.userID = users.userID;';
+    db.task('get-everything', task => {
+		return task.batch([
+			task.any(query),
+		]);
+	})
+        .then(function(rows) {
+            res.render('views/favorites',{
+				my_title: "Favorites Page",
+                data: rows[0],
+			})
+        })
+        .catch(function (err) {
+            console.log('error', err);
+            res.render('views/favorite', {
+                my_title: 'Favorite Page',
+                data: '',
+            })
+        })
+});
 
 
 app.listen(3000);
