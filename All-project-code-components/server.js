@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users/favorite", (req, res) => {
-  res.render("favorite");
+  res.render("favorite",{currentuser:currentuser});
 });
 
 
@@ -136,7 +136,7 @@ app.post("/users/login.ejs", function(req, res) {
 //ui
 // emily
 app.get('/users/ingredients', (req,res)=>{
-	res.render('ingredients');
+	res.render('ingredients',{currentuser:currentuser});
 });
 
 

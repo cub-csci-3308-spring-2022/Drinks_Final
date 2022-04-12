@@ -18,7 +18,7 @@
     <!--CSS stylesheet for this page-->
     <link rel="stylesheet" href="../ing_style.css">
 
-    
+
   </head>
   <body>
     <!--NAV BAR CODE-->
@@ -34,24 +34,22 @@
           </ul>
           <span class="navbar-text" style="font-family:'Apple Chancery'; font-size:40px; margin-left:auto; margin-right:auto">
             Cocktail Mixer
+            <h1>Hello <%= currentuser.firstname %><h1>
         </span>
-        <button class="btn btn-outline-success" type="submit">
-          <a a href="/users/login">Login</a>
-  </button>
   <button class="btn btn-outline-success" type="submit">
-    <a a href="/users/signup">Sign up</a>
+    <a a href="/">Sign out</a>
 </button>
-          
+
       </nav>
     </div>
 
     <!--list of ingredients to check off-->
         <div class = "container-fluid">
             <form action="/users/ingredients/search" method="post">
-              
+
                 <Label> Ingredients</Label><br>
                 <div>
-                   
+
                     <!--Checkboxes-->
                     <input class ="all_checkboxes" type="checkbox" name="Sugar_syrup_choice" value="Sugar syrup">Sugar syrup<br>
                     <input class ="all_checkboxes" type="checkbox" name="Lime_juice_choice" value="Lime juice">Lime juice<br>
@@ -83,26 +81,26 @@
                     <input class ="all_checkboxes" type="checkbox" name="Wine_choice" value="Wine">Wine<br>
                     <input class ="all_checkboxes" type="checkbox" name="pisco_choice" value="Pisco">Pisco<br>
                     <input class ="all_checkboxes" type="checkbox" name="Coconut_rum_liqueur_choice" value="Coconut rum liqueur">Coconut rum liqueur<br>
-                
+
                     <input class ="all_checkboxes" type="checkbox" name="sake_choice" value="Sake">Sake<br>
                     <input class ="all_checkboxes" type="checkbox" name="Strawberries_choice" value="Strawberries juice">Strawberries<br>
                     <input class ="all_checkboxes" type="checkbox" name="Cognac_choice" value="Cognac">Cognac<br>
                     <input class ="all_checkboxes" type="checkbox" name="Pineapple_choice" value="Pineapple">Pineapple<br>
                     <input class ="all_checkboxes" type="checkbox" name="mango_choice" value="mango">Mango<br>
-                    
+
 <!--submit button v 2
 <input type="search" id="mySearch" name="q">
 <button>Search</button>
 -->
 <!--submit button-->
 <input type="submit" value="search" class="submit-btn">
-                    
+
                 </div>
             </form>
 
-            
+
 
 
         </div>
-        
+
     </body>

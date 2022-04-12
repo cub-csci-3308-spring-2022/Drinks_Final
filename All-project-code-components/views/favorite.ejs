@@ -5,7 +5,7 @@
    <body style="background-color:rgba(102, 143, 166, 1)">
     <!DOCTYPE html>
     <html>
-        
+
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,16 +17,16 @@
      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
      crossorigin="anonymous"
    />
-   
+
     <style>
     * {
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: Arial, Helvetica, sans-serif;
     }
-    
+
     /* Float four columns side by side */
     .column {
       float: left;
@@ -40,17 +40,17 @@
     margin-right: auto;
     width: 50%;
     }
-    
+
     /* Remove extra left and right margins, due to padding */
     .row {margin: 0 -5px;}
-    
+
     /* Clear floats after the columns */
     .row:after {
       content: "";
       display: table;
       clear: both;
     }
-    
+
     /* Responsive columns */
     @media screen and (max-width: 600px) {
       .column {
@@ -59,7 +59,7 @@
         margin-bottom: 20px;
       }
     }
-    
+
     /* Style the counter cards */
     .card {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -85,16 +85,14 @@
           </ul>
           <span class="navbar-text" style="font-family:'Apple Chancery'; font-size:40px; margin-left:auto; margin-right:auto">
             Cocktail Mixer
+            <h1>Hello <%= currentuser.firstname %><h1>
         </span>
-        <button class="btn btn-outline-success" type="submit">
-          <a a href="/users/login">Login</a>
-  </button>
   <button class="btn btn-outline-success" type="submit">
-    <a a href="/users/signup">Sign up</a>
+    <a a href="/">Sign out</a>
 </button>
       </nav>
     </div>
-    
+
 
     <h1 class="display-4" style="font-family:'Apple Chancery'; font-size:60px;">
       Favorites
@@ -119,7 +117,7 @@
           </div>
         </div>
       </div>
-    
+
       <div class="column">
         <div class="card">
           <h3>Screwdriver</h3>
@@ -136,7 +134,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="column">
         <div class="card">
           <h3>Carribbean Bliss</h3>
@@ -153,7 +151,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="column">
         <div class="card">
           <h3>Shogun</h3>
@@ -243,6 +241,6 @@
         </div>
       </div>
     </div>
-    
+
     </body>
 </html>
