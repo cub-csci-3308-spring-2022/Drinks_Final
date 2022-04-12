@@ -19,26 +19,26 @@ const dbConfig = {
 
 var db = pgp(dbConfig);
 var selected_ingredients = [];
-
+var currentuser;
 
 app.use(express.static(__dirname + '/'));//This line is necessary for us to use relative paths and access our resources directory
 app.set("view engine", "ejs"); // to be able to view the ejs file
 
 
+app.get("/users/home", (req, res) => {
+  res.render("home.ejs",{currentuser:currentuser}); // to view the homepage inex is the name
+});
+
+// app.get("/users/signup", (req, res) => {
+//   res.render("signup.ejs");
+// });
+
 app.get("/", (req, res) => {
-  res.render("home"); // to view the homepage inex is the name
-});
-
-app.get("/users/signup", (req, res) => {
-  res.render("signup.ejs");
-});
-
-app.get("/users/login", (req, res) => {
   res.render("login.ejs"); // to view the login page
 });
 
 app.get("/users/favorite", (req, res) => {
-  res.render("favorite");
+  res.render("favorite",{currentuser:currentuser});
 });
 
 
@@ -84,7 +84,7 @@ app.post("/users/signup", function (req, res) {
           ]);
       })
       .then(info => {
-        res.render("home.ejs")
+        res.render("login.ejs")
       })
       .catch(err => {
               console.log('error', err);
@@ -98,7 +98,7 @@ app.post("/users/login.ejs", function(req, res) {
   var username = req.body.username;
 	var password = req.body.password;
 	//var query = 'select username, password from users;';
-	var query = "select username, password from users where username = '" + username + "';";
+	var query = "select * from users where username = '" + username + "';";
 	db.any(query)
         .then(function (rows) {
 					console.log(rows);
@@ -107,7 +107,9 @@ app.post("/users/login.ejs", function(req, res) {
 					// 	return
 					// }
       		if(rows[0].password == password){
-						return res.render("home");
+						currentuser = rows[0];
+						console.log(currentuser);
+						return res.redirect("/users/home");
 					}
 					else{
 						console.log({
@@ -125,18 +127,18 @@ app.post("/users/login.ejs", function(req, res) {
 });
 
 // Dummy Load Database
-// INSERT INTO users(firstName, lastName, DOB, username, password) VALUES('Duncan','Miller','20000212','duncanmiller','DuncanMiller1!');
+// INSERT INTO users(firstName, lastName, DOB, username, password) VALUES('easy','checkc','20000101','user','pass');
 
+// Access Database
+//docker-compose exec db psql -U postgres
 
 
 //ui
 // emily
 app.get('/users/ingredients', (req,res)=>{
   var empty = {};
-	res.render('ingredients', {all_drinks: empty});
-
+	res.render('ingredients',{currentuser: currentuser, all_drinks: empty});
 });
-
 
 
 //api
@@ -153,7 +155,7 @@ app.post('/users/ingredients', async function(req,res){
   var result = await getDrinkNames(selected_ingredients);
   console.log(result);
 
-  res.render('ingredients', {all_drinks: result}); 
+  res.render('ingredients', {currentuser: currentuser, all_drinks: result}); 
 });
 
 

@@ -50,6 +50,132 @@
 
         <br />
 
+        <div class="text-center">
+          <a
+            href="#SignUpModal"
+            class="btn btn-info"
+            data-toggle="modal"
+            onclick="signUpModalFn()"
+            >Sign Up</a
+          >
+          </div>
+
+        <form action="/users/signup" method="POST">
+        <!-- Modal HTML -->
+          <div id="SignUpModal" class="modal fade">
+          <div class="modal-dialog modal-login">
+            <div class="modal-content">
+            <div class="modal-header">
+              <div class="avatar">
+              <img
+                src="https://www.tutorialrepublic.com/examples/images/avatar.png"
+                alt="Avatar"
+              />
+              </div>
+              <h4 class="modal-title">Sign Up page</h4>
+              <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-hidden="true"
+              >
+              &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="fname"
+                placeholder="First Name"
+                id="fname"
+                required="required"
+              />
+              </div>
+              <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="lname"
+                placeholder="Last Name"
+                id="lname"
+                required="required"
+              />
+              </div>
+              <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                placeholder="Username"
+                id="username"
+                required="required"
+              />
+              </div>
+              <div class="form-group">
+              <input
+                id = "birthyear"
+                type="birthdate"
+                class="form-control"
+                name="birthyear"
+                placeholder="Birthdate: YYYYMMDD"
+                required="required"
+              />
+              </div>
+              <div class="form-group">
+              <input
+                id="password"
+                type="password"
+                class="form-control"
+                name="password"
+                placeholder="Password"
+                required="required"
+              />
+              </div>
+              <div class="form-group">
+              <input
+                id="password2"
+                type="password"
+                class="form-control"
+                name="password2"
+                placeholder="Confirm Password"
+                required="required"
+              />
+              </div>
+              <div class="form-group">
+              <button
+                id="my_submit_button"
+                class="btn btn-primary btn-block login-btn"
+                disabled
+              >
+                Sign Up
+              </button>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div id="message" style="display: block">
+              <h3>Birthyear must be before 2002:</h3>
+              <p id="year" class="invalid">Year is <b>before 2002</b></p>
+              <h4>Password must contain the following:</h4>
+              <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+              <p id="capital" class="invalid">
+                A <b>capital (uppercase)</b> letter
+              </p>
+              <p id="number" class="invalid">A <b>number</b></p>
+              <p id="symbol" class="invalid">A <b>symbol</b> "!@#$%^&*()".</p>
+              <p id="length" class="invalid">Minimum <b>12 characters</b></p>
+              <p id="match" class="invalid">
+                Password and Confirm Password Match
+              </p>
+              </div>
+            </div>
+            </div>
+          </div>
+          </div>
+
+        </form>
+
         <br />
       <form action="/users/login.ejs" method="POST">
         <div class="text-center">
@@ -122,8 +248,6 @@
         </div>
 
         <br>
-
-      <a href="/users/signup">Not registered? Sign up here</a>
     </form>
     <!-- Because we now use partials for our header, we can't directly add Boostrap Classes to our Body tag.
          Below is a "work-around" to apply the Bootstrap classes when the page loads
