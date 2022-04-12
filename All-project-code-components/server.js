@@ -169,6 +169,7 @@ urlTwo = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
 async function getDrinkIngredients(drink_name){
 
+  var identity;
   var ingredients = [];
   var measurement = [];
 
@@ -197,6 +198,7 @@ async function getDrinkIngredients(drink_name){
 					  measurement.push(data.drinks[0][mes]);
 					  //console.log(measurement[i-1], ingredients[i-1]);
           }
+          identity = data.drinks[0].idDrink;
       }
 
 
@@ -209,7 +211,7 @@ async function getDrinkIngredients(drink_name){
     return {};
 	});
   await main_promise;
-  return {ingredients: ingredients, measurement: measurement};
+  return {id: identity, ingredients: ingredients, measurement: measurement};
 }
 
 
@@ -251,7 +253,7 @@ async function getDrinkNames(selected_ingredients){
 }
 
 // Favorites Page Requests (Cooper/Behta)
-app.get('/favorites/favorite.ejs', function(req, res) {
+app.get('/user/favorite', function(req, res) {
 	// Query to inner join (get) drinks from favorites table while matching userID 
 	var query = 'SELECT drinkID,drinkName from favorites INNER JOIN users ON favorite.userID = users.userID;';
     db.task('get-everything', task => {
@@ -274,17 +276,8 @@ app.get('/favorites/favorite.ejs', function(req, res) {
         })
 });
 
-app.post('/user/favortie.ejs', function(req, res){
-var query= 'INSERT STATEMENT  ';
-  var data = $("#myContent").html();
-  var url = "--your url here--";
-  $.post(url,
-    {
-      html: data
-    },
-    function(data, status){
-      alert("Data: " + data + "\nStatus: " + status);
-  });
+app.post('/user/favorite', function(req, res){
+
 });
 
 

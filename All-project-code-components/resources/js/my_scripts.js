@@ -132,6 +132,19 @@ function signUpModalFn() {
 	}
   }
 
+  function favoriteButton(id){
+	  const drinks = document.querySelectorAll("#drinks")
+	  drinks.forEach(data => {
+		  const child = data.firstElementChild.children
+		//   console.log(data.firstElementChild.children)
+		console.log(child[0].innerHTML)
+		 for(i = 2; i < child.length; i++){
+			console.log(child[i].innerHTML)
+		 }
+	  })
+	//   console.log(drinks)
+  }
+
 
 
   
