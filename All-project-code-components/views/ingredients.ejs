@@ -17,6 +17,7 @@
     />
     <!--CSS stylesheet for this page-->
     <link rel="stylesheet" href="../ing_style.css">
+    <link rel="cardsheet" href="../card.css">
 
     
   </head>
@@ -47,7 +48,7 @@
 
     <!--list of ingredients to check off-->
         <div class = "container-fluid">
-            <form action="/users/ingredients/search" method="post">
+            <form action="/users/ingredients" method="post">
               
                 <Label> Ingredients</Label><br>
                 <div>
@@ -104,5 +105,39 @@
 
 
         </div>
-        
+
+        <%if(all_drinks){
+          for(let drink in all_drinks)
+          {%>
+            <div class="container-fluid">
+
+              <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                      <h1 class="card-title-fluid" style = "font-size: 30px; position: absolute; left:50%"> <%-drink %> </h1>
+                      <input class="star" type="checkbox" title="favorite drink" unchecked>Favorite<br/><br/>Favorite
+
+                      <ul class="recipe"></ul>
+                      <%for(let i = 0; i < 10; i++)
+                      {
+                        
+                        if(all_drinks[drink].ingredients[i] == null || all_drinks[drink].ingredients[i] == '')
+                        {
+                          break;
+                        }%>
+                        <li class = "card"><%-all_drinks[drink].measurement[i]%> - <%- all_drinks[drink].ingredients[i]%></li>
+                        
+                      <%}%>
+                      </ul>
+
+                  </ul>
+              </div> 
+          </div>
+         <% }
+        }%>
+
+<!--all_drinks[drink].property-->
+    
+
+
+<!--all_drinks[drink].property-->
     </body>
