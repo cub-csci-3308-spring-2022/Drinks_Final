@@ -276,8 +276,26 @@ app.get('/user/favorite', function(req, res) {
         })
 });
 
-app.post('/user/favorite', function(req, res){
-
+app.post('/user/favorite', function(req,res) {
+	var query = 'INSERT drinkID,drinkName from drinks INNER JOIN favorite ON favorite.drinkID = drinks.drinkID;';
+	db.task('get-everything', task => {
+		return task.batch([
+			task.any(query),
+		]);
+	})
+        .then(function(rows) {
+            res.render('views/favorites',{
+				my_title: "Favorites Page",
+                data: rows[0],
+			})
+        })
+        .catch(function (err) {
+            console.log('error', err);
+            res.render('views/favorite', {
+                my_title: 'Favorite Page',
+                data: '',
+            })
+        })
 });
 
 
