@@ -185,10 +185,10 @@ async function getDrinkIngredients(drink_name){
 			var promise = response.json().then(function(data)
 			{
 				console.log(data);
-				  //console.log(data.drinks[0]["strDrink"]);
+				identity = data.drinks[0].idDrink;
 
-				for(var i = 1; i < 10; i++)
-          {
+			for(var i = 1; i < 10; i++)
+			{
             var ing = "strIngredient" +i;
 					  var mes = "strMeasure" +i;
 					  if(data.drinks[0][ing] == null)
