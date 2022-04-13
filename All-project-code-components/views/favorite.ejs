@@ -102,36 +102,7 @@
     
 
 
-    <%if(all_drinks){
-      for(let drink in all_drinks)
-      {%>
-        <div class="container-fluid">
 
-          <div class="card" style="width: 18rem;" id="drinks">
-              <div class="card-body">
-                  <h1 class="card-title-fluid" style = "font-size: 30px; position: absolute; left:50%"> <%-drink %> </h1>
-                  <button type="submit" onclick="favoriteButton(all_drinks[drink].id)">Favorite</button>
-
-                
-
-                  <ul class="recipe"></ul>
-                  <%for(let i = 0; i < 10; i++)
-                  {
-                    
-                    if(all_drinks[drink].ingredients[i] == null || all_drinks[drink].ingredients[i] == '')
-                    {
-                      break;
-                    }%>
-                    <li class = "card"><%-all_drinks[drink].measurement[i]%> - <%- all_drinks[drink].ingredients[i]%></li>
-                    
-                  <%}%>
-                  </ul>
-
-              </ul>
-          </div> 
-      </div>
-     <% }
-    }%>
 
 
 </html>
