@@ -169,6 +169,7 @@ urlTwo = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
 async function getDrinkIngredients(drink_name){
 
+  var identity;
   var ingredients = [];
   var measurement = [];
 
@@ -198,6 +199,7 @@ async function getDrinkIngredients(drink_name){
 					  measurement.push(data.drinks[0][mes]);
 					  //console.log(measurement[i-1], ingredients[i-1]);
           }
+          identity = data.drinks[0].idDrink;
       }
 
 
@@ -210,7 +212,7 @@ async function getDrinkIngredients(drink_name){
     return {};
 	});
   await main_promise;
-  return {ingredients: ingredients, measurement: measurement};
+  return {id: identity, ingredients: ingredients, measurement: measurement};
 }
 
 
@@ -251,6 +253,51 @@ async function getDrinkNames(selected_ingredients){
   return drinks;
 }
 
+// Favorites Page Requests (Cooper/Behta)
+app.get('/user/favorite', function(req, res) {
+	// Query to inner join (get) drinks from favorites table while matching userID 
+	var query = 'SELECT drinkID,drinkName from favorites INNER JOIN users ON favorite.userID = users.userID;';
+    db.task('get-everything', task => {
+		return task.batch([
+			task.any(query),
+		]);
+	})
+        .then(function(rows) {
+            res.render('views/favorites',{
+				my_title: "Favorites Page",
+                data: rows[0],
+			})
+        })
+        .catch(function (err) {
+            console.log('error', err);
+            res.render('views/favorite', {
+                my_title: 'Favorite Page',
+                data: '',
+            })
+        })
+});
+
+app.post('/user/favorite', function(req,res) {
+	var query = 'INSERT drinkID,drinkName from drinks INNER JOIN favorite ON favorite.drinkID = drinks.drinkID;';
+	db.task('get-everything', task => {
+		return task.batch([
+			task.any(query),
+		]);
+	})
+        .then(function(rows) {
+            res.render('views/favorites',{
+				my_title: "Favorites Page",
+                data: rows[0],
+			})
+        })
+        .catch(function (err) {
+            console.log('error', err);
+            res.render('views/favorite', {
+                my_title: 'Favorite Page',
+                data: '',
+            })
+        })
+});
 
 
 app.listen(3000);
