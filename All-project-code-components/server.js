@@ -183,6 +183,7 @@ async function getDrinkIngredients(drink_name){
 
 			var promise = response.json().then(function(data)
 			{
+				console.log(data);
 				  //console.log(data.drinks[0]["strDrink"]);
 
 				for(var i = 1; i < 10; i++)
