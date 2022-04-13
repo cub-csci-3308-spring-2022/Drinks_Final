@@ -16,8 +16,8 @@
       crossorigin="anonymous"
     />
     <!--CSS stylesheet for this page-->
-    <link rel="stylesheet" href="../ing_style.css">
-    <link rel="cardsheet" href="../card.css">
+    <link rel="stylesheet" href="../resources/css/ing_style.css">
+    <link rel="cardsheet" href="../resources/css/star.css">
 
 
   </head>
@@ -45,9 +45,9 @@
 
     <!--list of ingredients to check off-->
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-6">
+    <div class="col-sm-3">
 
 
     <form action="/users/ingredients" method="post">
@@ -100,29 +100,24 @@
       -->
       <!--submit button-->
       <input type="submit" value="search" class="submit-btn">
-
-                      </div>
+      </div>
     </form>
+</div>
 
 
-    </div>
+    <div class="col-8">
 
-
-    <div class="col-6">
-
-
-    <%if(all_drinks){
-      for(let drink in all_drinks)
+      
+    <%if(all_drinks){%>
+      <div class="card-deck">
+      <%for(let drink in all_drinks)
       {%>
-        <div class=".col-md-1">
-          
+        <div class="col-4">
+          <div class="card">
+              <div class="card-body">
+                  <h1 class="card-title" style = "font-size: 30px; height: 5rem"> <%-drink %> </h1>
 
-          <div class="card" style="width: 20rem; height:auto">
-              <div class="card-body" style="background-color: rgba(131, 161, 157, 1); border-style: solid; border-radius:30px;">
-                  <h1 class="card-title-fluid" style = "font-size: 30px; position: absolute; left:50%"> <%-drink %> </h1><br/>
-                  <input class="star" type="checkbox" title="favorite drink" unchecked>Favorite<br/><br/>Favorite
-
-                  <ul class="recipe"></ul>
+                  <ul class="recipe" style="height: 11rem">
                   <%for(let i = 0; i < 10; i++)
                   {
                     
@@ -130,32 +125,21 @@
                     {
                       break;
                     }%>
-                    <li class = "card"><%-all_drinks[drink].measurement[i]%> - <%- all_drinks[drink].ingredients[i]%></li>
+                    <li class = "list-item"><%-all_drinks[drink].measurement[i]%> - <%- all_drinks[drink].ingredients[i]%></li>
                     
                   <%}%>
                   </ul>
-
-              </ul>
+                  <br>
+                  <input class="star" type="checkbox" title="favorite drink" unchecked><br>
+              </div>
           </div> 
+        </div>
+     <% }%>
       </div>
-     <% }
-    }%>
+    <%}%>
 
   </div>
-
 </div>
-
-
-
-
-
-  </div>
-
-
-
-
-</div>
-
 
 
 

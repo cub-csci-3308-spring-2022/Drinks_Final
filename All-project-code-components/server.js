@@ -153,7 +153,6 @@ app.post('/users/ingredients', async function(req,res){
 
 	//search db call
   var result = await getDrinkNames(selected_ingredients);
-  console.log(result);
 
   res.render('ingredients', {currentuser: currentuser, all_drinks: result}); 
 });
@@ -184,7 +183,6 @@ async function getDrinkIngredients(drink_name){
 
 			var promise = response.json().then(function(data)
 			{
-				console.log(data);
 				identity = data.drinks[0].idDrink;
 
 			for(var i = 1; i < 10; i++)
@@ -197,7 +195,6 @@ async function getDrinkIngredients(drink_name){
 					  }
 					  ingredients.push(data.drinks[0][ing]);
 					  measurement.push(data.drinks[0][mes]);
-					  //console.log(measurement[i-1], ingredients[i-1]);
           }
           identity = data.drinks[0].idDrink;
       }

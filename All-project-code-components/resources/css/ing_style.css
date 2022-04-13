@@ -4,7 +4,7 @@ body {
 }
 /*FORM BOX/CONTAINERSTYLING*/
 form {
-    background-color:rgba(131, 161, 157, 1);
+    background-color:rgb(190, 190, 190);
     position:relative;
     left: 10px;
     width:330px;
@@ -17,20 +17,9 @@ form {
 }
 /*INGREDIENT LABEL STYLING*/
 label {
-    color:white;
+    color:black;
     font-size: 35px;
-}
-/*SEARCH BOX STYLING*/
-.search_box{
-    background-color:rgba(200,200,200,1);
-    position:relative;
-    left:2px;
-    bottom:10px;
-    width:320px;
-    height:50px;
-    border:1px solid black;
-    border-radius:5px;
-}
+} 
 /*SUBMIT BUTTON STYLING*/
 .submit-btn{
     background-color:rgba(102, 143, 166, 1);
@@ -46,3 +35,29 @@ label {
     height: 20px;
     margin-right: 20px;
 }
+
+/*CARD CSS*/
+.card{
+    width: 20rem;
+    background-color: rgb(190, 190, 190);
+    border: 2px solid black;
+    border-radius:15px;
+}
+.star{
+   position: absolute;
+   left: 45%;
+   visibility:hidden;
+   font-size:30px;
+   cursor:pointer;
+}
+.star:before{
+   content: "\2605";
+   position: absolute;
+   visibility:visible;
+   color: #666666;
+ }
+ .star:checked:before{
+    content: "\2605";
+    position: absolute;
+    color: #FFC107;
+ }
